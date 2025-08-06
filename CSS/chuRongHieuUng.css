@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+.khungChuRongHieuUng {
+    display: flex;
+    
+    font-family: "Poppins", sans-serif;
+}
+
+/* Định dạng ký tự (.kyTuRongHieuUng)*/
+.kyTuRongHieuUng {
+    position: relative; /*Cho phép sử dụng ::before để tạo hiệu ứng overlay.*/
+    font-size: 85px;
+    font-weight: 700; /*Chữ in đậm.*/
+    color: transparent; /*Chữ ban đầu không có màu, chỉ có viền chữ.*/
+    -webkit-text-stroke: 2px var(--color); /*Tạo viền chữ có màu lấy từ biến --color.*/
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+/*Hiệu ứng khi hover (::before)*/
+.kyTuRongHieuUng::before {
+    content: attr(data-text); /*Lấy nội dung từ thuộc tính data-text để hiển thị chữ phía trên.*/
+    position: absolute; /*Chữ sẽ chồng lên vị trí ban đầu.*/
+    inset: 0; /*Căn chữ vào đúng vị trí của phần tử gốc.*/
+    color: var(--color); /*Chữ hiển thị màu sắc lấy từ biến --color.*/
+    overflow: hidden; /*Ẩn phần nội dung vượt quá phạm vi ban đầu.*/
+    height: 0; /*Ẩn chữ lúc đầu.*/
+    transition: height 0.6s ease-in-out; /*Tạo hiệu ứng chữ xuất hiện từ từ khi hover.*/
+}
+
+
+/*Hiệu ứng khi hover (.kyTuRongHieuUng:hover::before)*/
+.kyTuRongHieuUng:hover::before {
+    height: 100%; /*Khi hover, chữ hiển thị đầy đủ.*/
+    filter: drop-shadow(0 0 2rem var(--color)); /*Tạo hiệu ứng phát sáng cho chữ bằng màu --color.*/
+}
+
+/*
+Tóm tắt chức năng của CSS này
+✅ Chữ ban đầu chỉ hiển thị đường viền màu (-webkit-text-stroke).
+✅ Khi di chuột vào, chữ sẽ dần xuất hiện từ dưới lên với hiệu ứng phát sáng.
+✅ Sắp xếp các ký tự trên cùng một hàng bằng display: flex.
+*/

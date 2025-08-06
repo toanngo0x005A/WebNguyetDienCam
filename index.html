@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap">
+    <!--Đây là một liên kết đến Google Fonts để bạn có thể sử dụng font chữ Oswald trong trang web của mình
+    Và ta đã áp dụng nó cho toàn bộ ký tự trong web này qua file "genshinNguyenTo.css"-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+ 
+    <link rel="stylesheet" href="CSS/nguyetDienCam.css">
+    <link rel="stylesheet" href="CSS/thanhMenuTrenCungCute.css">
+    <link rel="stylesheet" href="CSS/phongOswaldTieuChuanKichCoDuaVaoManHinh.css">
+    <link rel="stylesheet" href="CSS/chuRongHieuUng.css">
+    <link rel="stylesheet" href="CSS/hieuUngCuon.css">
+    <link rel="stylesheet" href="CSS/luaChonRadioDoiMau.css">
+
+    <title>Nguyệt Điện-Cảm</title>
+    <!--THAM KHẢO VÀ XÁC NHẬN BỞI NHIỀU NGUỒN
+    TRONG ĐÓ CÓ: https://gamerant.com/genshin-impact-lunar-charged-reaction-mechanics-damage-calculation-how-works-crit/
+    -->
+</head>
+
+<body>
+    <header class="menuCute">
+        <div class="container-menu">
+            <a href="#" class="logo">
+                <img src="Imgs/Sticker/varesa-genshin-impact-chibi-food.webp" style="margin-top: -7%; height: 50px">
+                Varesa
+            </a>
+
+
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="navLinks">
+                <a href="#Ineffa"><i class="fa-solid fa-user"></i>Nhân vật</a>
+                <a href="#KhangQuai"><i class="fa-solid fa-skull-crossbones"></i></i>Kháng</a>
+                <a href="#XepHangNguyetDienCamPUCN"><i class="fa-solid fa-ranking-star"></i>Xếp hạng</a>
+                <a href="#DiaChiTongKetNguyetDienCam"><i class="fa-solid fa-gamepad"></i>Tổng kết</a>
+                
+                <div><i class="fa-solid fa-bolt"></i>
+                    Nguyệt Điện-Cảm: <span class="NguyetDienCamPUChot"></span>
+                </div>
+            
+            </nav>
+        </div>
+    </header>
+    
+
+
+    <!--Phần nền dưới-->
+    <div id="NenPhiaDuoi">
+        <img src="Imgs/Gifs/varesa-genshin-run.gif" width="100%" loading="eager"> 
+        <!--eager sẽ ưu tiên tải ngay ảnh này khi tải trang-->
+        <img src="Imgs/HinhNen/genshinEvent5Cham8.png" width="100%">
+        <img src="Imgs/HinhNen/varesaCard.png" width="100%">
+    </div>
+
+    
+    <!-- Phần nền trên( là phần che nền dưới)-->
+    <div class="NenPhiaTren nenTrenCung">
+    <!--Đẩy phần nền xuống dưới so với trên đầu web một khoảng cách tương đương 
+    70% chiều cao của cửa sổ trình duyệt, khiến phần nền sẽ bắt đầu xuất hiện sau video.
+    %%Lý do ta không ghi thuộc tính này chung với class "NenPhiaTren" trong file EldenNihtreign.css??
+    =>Là bởi vì chỉ có Nền phía trên đầu tiên( tức cái thẻ div đang gắn class "NenPhiaTren" ngay trên) 
+    là cần "margin-top: 70vh;" thôi
+    còn các Nền phía trên bên dưới( tức các thẻ div gắn class "NenPhiaTren" bên dưới) thì không cần.-->
+    <div class="container">
+
+        
+        <div style="display: flex; justify-content: space-around; align-items: center" >
+            <img src="Imgs/Sticker/varesa-genshin-impact-chibi-attack.png" class="playNhac4ChuLam blockToGap4" style="margin-top: -2.5rem">
+            <img src="Imgs/TenLogo/LunarCharged-logo.png" class="blockToGap2" style="margin-top: -1.35rem">
+        </div>
+
+        
+        <div id="TieuDeNguyetDienCam" class="tieuChuanKichCoHienThi mt-5 mb-1">
+            <div class="khungChuRongHieuUng" style="justify-content: center;">
+                <div class="kyTuRongHieuUng chuToGap1_5" style="--color: #f8c8dc" data-text="N">N</div> <!-- hồng ánh trăng -->
+                <div class="kyTuRongHieuUng chuToGap1_5" style="--color: #ffe5b4" data-text="G">G</div> <!-- cam đào sáng -->
+                <div class="kyTuRongHieuUng chuToGap1_5" style="--color: #b2f2bb" data-text="U">U</div> <!-- xanh lá pastel -->
+                <div class="kyTuRongHieuUng chuToGap1_5" style="--color: #c8d6e5" data-text="Y">Y</div> <!-- xanh bạc trăng -->
+                <div class="kyTuRongHieuUng chuToGap1_5" style="--color: #fff3b0" data-text="Ệ">Ệ</div> <!-- vàng ánh trăng -->
+                <div class="kyTuRongHieuUng chuToGap1_5" style="--color: #f5a9bc" data-text="T">T</div> <!-- hồng dịu -->
+            </div>
+
+            <div class="khungChuRongHieuUng" style="justify-content: center;">
+                <div class="kyTuRongHieuUng chuToGap1_5" style="--color: #b733f9" data-text="ĐIỆN">ĐIỆN</div>   <!-- xanh cyan sáng -->
+                <div class="kyTuRongHieuUng chuToGap1_5" style="--color: #2c3e50" data-text="-">-</div>   <!-- Đen -->
+                <div class="kyTuRongHieuUng chuToGap1_5" style="--color: #23b1d8" data-text="CẢM">CẢM</div>     <!-- tím hồng rực -->
+            </div>
+
+        </div>
+
+
+
+
+        <div class="khungAllNV">
+
+            <div class="row hieuUngCuon khungNV" style="margin-top: 5rem;">
+                
+                <div class="col-12">  
+                    <!-- Cụm lựa chọn số 1: Cho NV đầu tiên -->
+                    <div class="lua-chon-truot blockToGap1_5 chuToGap0_5 text-center">
+                        <input type="radio" name="chon1" class="benTrai" id="chon1-benTrai" value="benTrai">
+                        <label for="chon1-benTrai">🔴Hụt</label>
+
+                        <input type="radio" name="chon1" class="oGiua text-center" id="chon1-oGiua" value="oGiua" checked>
+                        <label for="chon1-oGiua">🟡AVG</label>
+
+                        <input type="radio" name="chon1" class="benPhai" id="chon1-benPhai" value="benPhai">
+                        <label for="chon1-benPhai">🟢Chí</label>
+
+                        <div class="con-truot"></div>
+                    </div>
+                </div>
+
+
+                <div id="Ineffa" class="col-12 col-xl-6 text-center">
+                    <img class="blockToGap3" src="Imgs/TenLogo/Ineffa-ten.png"><br>
+                    <img class="blockToGap8_5" src="Imgs/NhanVat/UI_Gacha_AvatarImg_Ineffa.png">
+                </div>
+
+                <div class="col-12 col-xl-6 khungNhapChiSo">
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">LV(<span class="GtriLevelPhanUngCoBan"></span>)</p>
+                            <input type="number" class="LevelNV form-control blockToGap0_6 chuToGap0_6" value="90" min="0" max="90">
+                        </div>
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">Bonus Nguyệt</p>
+                            <input type="number" class="chiSoBonusNguyet form-control blockToGap0_6 chuToGap0_6" value="0" min="0">
+                        </div>
+                    
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">ATK</p>
+                            <input type="number" class="chiSoATK form-control blockToGap0_6 chuToGap0_6" value="0" min="0">
+                        </div>     
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">Tinh Thông</p>
+                            <input type="number" class="chiSoTinhThong form-control blockToGap0_6 chuToGap0_6" value="0" min="0">
+                        </div>
+                        
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">Tỷ lệ bạo</p>
+                            <input type="number" class="chiSoTyLeBao form-control blockToGap0_6 chuToGap0_6" value="0.05" min="0.05" max="1">
+                        </div>
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">ST bạo</p>
+                            <input type="number" class="chiSoSatThuongBao form-control blockToGap0_6 chuToGap0_6" value="0.5" min="0.5">
+                        </div>
+
+
+                        <div class="KhungHeSoTangNguyetTuATK col-6">
+                            <p class="chuToGap0_6 mb-0">Hệ số Tăng Nguyệt: <span class="GtriHeSoTangNguyetATK">0</span></p>
+                        </div>
+                        <div class="KhungBonusNguyetTuEM col-6">
+                            <p class="chuToGap0_6 mb-0">Bonus Nguyệt EM: <span class="GtriBonusNguyetEM">0</span></p>
+                        </div>
+                    
+
+                        <div class="col-12 d-flex align-items-center mt-2">
+                            <img src="Imgs/TenLogo/ElectronCharger-icon.png" class="blockToGap0_9">
+                            <p class="chuToGap0_7 mb-0"  style="color: rgb(0, 180, 255); font-weight: bold">
+                                Nguyệt Điện-cảm phản ứng: <span class="NguyetDienCamPUCN">0</span>
+                            </p>
+                        </div>
+
+                        <div class="col-12 d-flex align-items-center mt-2">
+                            <img src="Imgs/TenLogo/LunarCharged-icon.png" class="blockToGap0_9">
+                            <p class="mb-0 chuToGap0_7" style="color: rgb(255, 85, 252); font-weight: bold">
+                                Nguyệt Điện-cảm trực tiếp: <span id="NguyetDienCamIneffa" class="NguyetDienCamTT">0</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="row hieuUngCuon khungNV" style="margin-top: 3rem;">
+                
+                <div class="col-12">
+                    <div class="lua-chon-truot blockToGap1_5 chuToGap0_5 text-center">
+                        <input type="radio" name="chon2" class="benTrai" id="chon2-benTrai" value="benTrai">
+                        <label for="chon2-benTrai">🔴Hụt</label>
+
+                        <input type="radio" name="chon2" class="oGiua text-center" id="chon2-oGiua" value="oGiua" checked>
+                        <label for="chon2-oGiua">🟡AVG</label>
+
+                        <input type="radio" name="chon2" class="benPhai" id="chon2-benPhai" value="benPhai">
+                        <label for="chon2-benPhai">🟢Chí</label>
+
+                        <div class="con-truot"></div>
+                    </div>
+                </div>
+
+                <div id="Flins" class="col-12 col-xl-6 text-center order-1 order-xl-2">
+                    <img class="blockToGap3" src="Imgs/TenLogo/Flins-ten.png"><br>
+                    <img class="blockToGap8_5" src="Imgs/NhanVat/UI_Gacha_AvatarImg_Flins.png">
+                </div>
+                <!--order-1: hiển thị trước (trên đầu) trên màn hình nhỏ
+                order-2: hiển thị sau (dưới)
+                order-xl-1 / order-xl-2: giữ nguyên thứ tự cũ khi ở màn hình lớn (xl)-->
+
+                <div class="col-12 col-xl-6 order-2 order-xl-1 khungNhapChiSo">
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">LV(<span class="GtriLevelPhanUngCoBan"></span>)</p>
+                            <input type="number" class="LevelNV form-control blockToGap0_6 chuToGap0_6" value="90" min="0" max="90">
+                        </div>
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">Bonus Nguyệt</p>
+                            <input type="number" class="chiSoBonusNguyet form-control blockToGap0_6 chuToGap0_6" value="0" min="0">
+                        </div>
+                    
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">ATK</p>
+                            <input type="number" class="chiSoATK form-control blockToGap0_6 chuToGap0_6" value="0" min="0">
+                        </div>     
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">Tinh Thông</p>
+                            <input type="number" class="chiSoTinhThong form-control blockToGap0_6 chuToGap0_6" value="0" min="0">
+                        </div>
+                        
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">Tỷ lệ bạo</p>
+                            <input type="number" class="chiSoTyLeBao form-control blockToGap0_6 chuToGap0_6" value="0.05" min="0.05" max="1">
+                        </div>
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">ST bạo</p>
+                            <input type="number" class="chiSoSatThuongBao form-control blockToGap0_6 chuToGap0_6" value="0.5" min="0.5">
+                        </div>
+
+
+                        <div class="KhungHeSoTangNguyetTuATK col-6">
+                            <p class="chuToGap0_6 mb-0">Hệ số Tăng Nguyệt: <span class="GtriHeSoTangNguyetATK">0</span></p>
+                        </div>
+                        <div class="KhungBonusNguyetTuEM col-6">
+                            <p class="chuToGap0_6 mb-0">Bonus Nguyệt EM: <span class="GtriBonusNguyetEM">0</span></p>
+                        </div>
+
+                        <div class="col-12 d-flex align-items-center mt-2">
+                            <img src="Imgs/TenLogo/ElectronCharger-icon.png" class="blockToGap0_9">
+                            <p class="chuToGap0_7 mb-0"  style="color: rgb(0, 180, 255); font-weight: bold">
+                                Nguyệt Điện-cảm phản ứng: <span class="NguyetDienCamPUCN">0</span>
+                            </p>
+                        </div>
+
+                        <div class="col-12 d-flex align-items-center mt-2">
+                            <img src="Imgs/TenLogo/LunarCharged-icon.png" class="blockToGap0_9">
+                            <p class="mb-0 chuToGap0_7" style="color: rgb(255, 85, 252); font-weight: bold">
+                                Nguyệt Điện-cảm trực tiếp: <span id="NguyetDienCamFlins" class="NguyetDienCamTT"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row hieuUngCuon khungNV" style="margin-top: 3rem;">
+                
+                <div class="col-12">
+                    <div class="lua-chon-truot blockToGap1_5 chuToGap0_5 text-center">
+                        <input type="radio" name="chon3" class="benTrai" id="chon3-benTrai" value="benTrai">
+                        <label for="chon3-benTrai">🔴Hụt</label>
+
+                        <input type="radio" name="chon3" class="oGiua text-center" id="chon3-oGiua" value="oGiua" checked>
+                        <label for="chon3-oGiua">🟡AVG</label>
+
+                        <input type="radio" name="chon3" class="benPhai" id="chon3-benPhai" value="benPhai">
+                        <label for="chon3-benPhai">🟢Chí</label>
+
+                        <div class="con-truot"></div>
+                    </div>
+                </div>
+
+                <div id="Char3" class="col-12 col-xl-6 text-center">
+                    <img class="blockToGap3" src="Imgs/TenLogo/Aino-ten.png"><br>
+                    <img class="blockToGap8_5" src="Imgs/NhanVat/UI_Gacha_AvatarImg_Aino.png">
+                </div>
+
+                <div class="col-12 col-xl-6 khungNhapChiSo">
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">LV(<span class="GtriLevelPhanUngCoBan"></span>)</p>
+                            <input type="number" class="LevelNV form-control blockToGap0_6 chuToGap0_6" value="90" min="0" max="90">
+                        </div>
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">Bonus Nguyệt</p>
+                            <input type="number" class="chiSoBonusNguyet form-control blockToGap0_6 chuToGap0_6" value="0" min="0">
+                        </div>
+                        
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">Tỷ lệ bạo</p>
+                            <input type="number" class="chiSoTyLeBao form-control blockToGap0_6 chuToGap0_6" value="0.25" min="0.05" max="1">
+                        </div>
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">ST bạo</p>
+                            <input type="number" class="chiSoSatThuongBao form-control blockToGap0_6 chuToGap0_6" value="0.8" min="0.5">
+                        </div>
+
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">Tinh Thông</p>
+                            <input type="number" class="chiSoTinhThong form-control blockToGap0_6 chuToGap0_6" value="750" min="0">
+                        </div>
+
+                        <div class="KhungBonusNguyetTuEM col-6">
+                            <p class="chuToGap0_6 mb-0">Bonus Nguyệt EM: <span class="GtriBonusNguyetEM">0</span></p>
+                        </div>
+                    
+
+                        <div class="col-12 d-flex align-items-center mt-2">
+                            <img src="Imgs/TenLogo/ElectronCharger-icon.png" class="blockToGap0_9">
+                            <p class="chuToGap0_7 mb-0"  style="color: rgb(0, 180, 255); font-weight: bold">
+                                Nguyệt Điện-cảm phản ứng: <span class="NguyetDienCamPUCN">0</span>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row hieuUngCuon khungNV" style="margin-top: 3rem;">
+                
+                <div class="col-12">
+                    <div class="lua-chon-truot blockToGap1_5 chuToGap0_5 text-center">
+                        <input type="radio" name="chon4" class="benTrai" id="chon4-benTrai" value="benTrai">
+                        <label for="chon4-benTrai">🔴Hụt</label>
+
+                        <input type="radio" name="chon4" class="oGiua text-center" id="chon4-oGiua" value="oGiua" checked>
+                        <label for="chon4-oGiua">🟡AVG</label>
+
+                        <input type="radio" name="chon4" class="benPhai" id="chon4-benPhai" value="benPhai">
+                        <label for="chon4-benPhai">🟢Chí</label>
+
+                        <div class="con-truot"></div>
+                    </div>
+                </div>
+
+
+                <div id="Char4" class="col-12 col-xl-6 text-center order-1 order-xl-2">
+                    <img class="blockToGap3" src="Imgs/TenLogo/Kazuha-ten.png"><br>
+                    <img class="blockToGap8_5" src="Imgs/NhanVat/UI_Gacha_AvatarImg_Kazuha.png">
+                </div>
+
+                <div class="col-12 col-xl-6 order-2 order-xl-1 khungNhapChiSo">
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">LV(<span class="GtriLevelPhanUngCoBan"></span>)</p>
+                            <input type="number" class="LevelNV form-control blockToGap0_6 chuToGap0_6" value="90" min="0" max="90">
+                        </div>
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">Bonus Nguyệt</p>
+                            <input type="number" class="chiSoBonusNguyet form-control blockToGap0_6 chuToGap0_6" value="0" min="0">
+                        </div>
+                        
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">Tỷ lệ bạo</p>
+                            <input type="number" class="chiSoTyLeBao form-control blockToGap0_6 chuToGap0_6" value="0.35" min="0.05" max="1">
+                        </div>
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">ST bạo</p>
+                            <input type="number" class="chiSoSatThuongBao form-control blockToGap0_6 chuToGap0_6" value="0.6" min="0.5">
+                        </div>
+
+                        <div class="col-6">
+                            <p class="chuToGap0_6 mb-0">Tinh Thông</p>
+                            <input type="number" class="chiSoTinhThong form-control blockToGap0_6 chuToGap0_6" value="1000" min="0">
+                        </div>
+                        <div class="KhungBonusNguyetTuEM col-6">
+                            <p class="chuToGap0_6 mb-0">Bonus Nguyệt EM: <span class="GtriBonusNguyetEM">0</span></p>
+                        </div>
+
+                        <div class="col-12 d-flex align-items-center mt-2">
+                            <img src="Imgs/TenLogo/ElectronCharger-icon.png" class="blockToGap0_9">
+                            <p class="chuToGap0_7 mb-0"  style="color: rgb(0, 180, 255); font-weight: bold">
+                                Nguyệt Điện-cảm phản ứng: <span class="NguyetDienCamPUCN">0</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+        <div id="KhangQuai" class="row hieuUngCuon" style="margin-top: 6rem; padding-bottom: 1.5rem">    
+        <!--Không dùng margin-bottom để tạo khoảng cách với phần nền được vì
+        nó không phải phần tử nền độc lập mà là phần tử cha bao quanh các phần tử con.
+        Việc thêm margin-bottom chỉ tạo khoảng trống phía dưới dòng này chứ không đẩy phần 
+        nền bên dưới xa ra.
+        Thay vào đó, nên dùng padding-bottom để tạo khoảng cách nội bộ trong phần tử này,
+        giúp đảm bảo phần tử nền (ví dụ như ảnh nền hoặc lớp phủ nền) không bị dính sát vào 
+        nội dung phía dưới-->
+            <div class="col-12 text-center">
+                <img class="blockToGap2 img-fluid" src="Imgs/TenLogo/KhangQuai.png">
+            </div>
+
+            <div class="col-6">
+                <p class="chuToGap0_6 mb-0">Kháng quái <i class="fa-solid fa-skull"></i></p>
+                <input type="number" class="chiSoKhangQuai form-control blockToGap0_6 chuToGap0_6" value="0.1" min="0">
+            </div>
+
+            <div class="col-6">
+                <p class="chuToGap0_6 mb-0">Giảm Kháng <i class="fa-solid fa-down-long"></i></p>
+                <input type="number" class="giamKhangQuai form-control blockToGap0_7 chuToGap0_7" value="0.4" min="0">
+            </div>
+        
+            <div class="col-12 text-center">
+                <img class="blockToGap4_5" src="Imgs/Sticker/varesa-genshin-impact-chibi-run.webp">
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+
+    <div class="NenPhiaTrenTrongSuotGiua" id="DiaChiCuonXepHang" style="height: 10rem">
+    </div>
+
+    <div class="NenPhiaTren">
+    <div class="container">
+        <div class="text-center hieuUngCuon">
+            <img src="Imgs/TenLogo/XepHang.png" class="blockToGap3" style="margin-top: -2rem;">
+        </div>
+
+        <div class="text-center hieuUngCuon pb-5" id="XepHangNguyetDienCamPUCN"> 
+        <!--Class 'pb-5' tương đương 'padding-bottom: 3rem'-->
+            <h4 class="text-center" style="margin-top: 1.5rempx; margin-bottom: 2rem;">
+                <span style="color:rgb(255, 0, 140)">Nguyệt </span>
+                <span style="color:rgb(217, 87, 249)">Điện</span><span style="color:mediumturquoise">-Cảm </span>
+                <span style="color:rgb(135, 255, 31)">Phản ứng</span>
+            </h4>
+            <h6 class="hang1NguyetDienCamPUCN"></h6>
+            <h6 class="hang2NguyetDienCamPUCN"></h6>
+            <h6 class="hang3NguyetDienCamPUCN"></h6>
+            <h6 class="hang4NguyetDienCamPUCN"></h6>
+
+            <h5>
+                <i class="fa-solid fa-bolt"></i>
+                <span style="color:rgb(255, 0, 140)">Nguyệt </span>
+                <span style="color:rgb(217, 87, 249)">Điện</span><span style="color:mediumturquoise">-Cảm: </span>
+                <span class="NguyetDienCamPUChot"></span>
+            </h5>
+
+            <img class="blockToGap10" src="Imgs/NhanVat/UI_Gacha_AvatarImg_Flins - Ineffa.png">
+        </div>
+
+
+    </div>
+    </div>
+
+
+    <div class="NenPhiaTrenTrongSuotGiua" style="height: 10rem">
+    </div>
+
+
+    <div class="NenPhiaTren">
+    <div class="container">
+
+        <div class="text-center hieuUngCuon" id="DiaChiTongKetNguyetDienCam">
+            <img src="Imgs/TenLogo/TongKet.png" class="blockToGap3" style="margin-top: -2.5rem;">
+        </div>
+
+        <div class="text-center hieuUngCuon" id="TongKetNguyetDienCam">
+            <h3 class="text-center" style="margin-top: 1.5rempx; margin-bottom: 2rem;">
+                <i class="fa-solid fa-bolt" style="color: yellow"></i>
+                <span style="color:rgb(255, 0, 140)">Nguyệt </span>
+                <span style="color:rgb(217, 87, 249)">Điện</span><span style="color:mediumturquoise">-Cảm </span>
+            </h3>
+
+            <h4 style="color:rgb(255, 0, 140)">
+                <i class="fa-solid fa-robot"></i>
+                Nguyệt Ineffa: <span class="tongKetNguyetIneffa"></span>
+            </h4>
+            <h4 style="color:rgb(217, 87, 249)">
+                <i class="fa-solid fa-ghost"></i>
+                Nguyệt Flins: <span class="tongKetNguyetFlins"></span>
+            </h4>
+            <h4 style="color:mediumturquoise">
+                <i class="fa-solid fa-users"></i>
+                Nguyệt Điện-Cảm: <span class="tongKetNguyetDienCamAll"></span>
+            </h4>
+        
+
+            <div>
+                <img class="blockToGap3" src="Imgs/TenLogo/UI_TyLeNguyet.png">
+                <img class="blockToGap3" src="Imgs/TenLogo/UI_TinhThongNguyet.png">
+            </div>
+        </div> 
+
+
+        
+
+        <div class="row" style="margin-top: 4rem">    
+                    
+            <!-- Logo luôn nằm cố định trên đầu -->
+            <div class="col-12 text-center mb-3">
+                <img class="blockToGap2" src="Imgs/TenLogo/ThongTin.png">
+            </div>  
+
+            <!-- Văn bản: Màn hình nhỏ thì chiếm toàn bộ chiều ngang (col-12), còn ở màn hình lớn 
+            thì chỉ chiếm 5/12 (col-xl-5) bên phải. Dù là màn hình nhỏ hay lớn thì vẫn 
+            giữ vị trí thứ 2 nhờ order-2 -->
+            <div class="col-12 col-xl-5 order-2 order-xl-2">
+                <p class="chuToGap0_5">
+                    <span style="color: rgb(0, 195, 255)">Lunar</span>-
+                    <span style="color: rgb(245, 129, 255)">Charged</span> 
+                    là Phản ứng Nguyên tố được kích hoạt bằng cách gây hiệu ứng
+                    <span style="color: rgb(245, 129, 255)">Lôi</span> lên mục tiêu đã bị ảnh hưởng bởi 
+                    <span style="color: rgb(0, 195, 255)">Thủy</span> hoặc ngược lại. Sau khi kích hoạt phản ứng 
+                    <span style="color: rgb(0, 195, 255)">Lunar</span>-
+                    <span style="color: rgb(245, 129, 255)">Charged</span> 
+                    với một nhân vật có tài năng Moonsign Benediction trong nhóm , một đám mây giông sẽ xuất hiện, liên tục gây sát thương 
+                    <span style="color: rgb(245, 129, 255)">Lôi</span> 
+                    lên những kẻ địch gần đó bị ảnh hưởng bởi cả  
+                    <span style="color: rgb(0, 195, 255)">Thủy</span>
+                    và 
+                    <span style="color: rgb(245, 129, 255)">Lôi</span>.
+                </p>
+            </div>
+
+            <!-- GIF: Màn hình nhỏ thì chiếm toàn bộ chiều ngang (col-12), còn ở màn hình lớn 
+            thì chỉ chiếm 7/12 (col-xl-7) bên trái
+            Khác: Luôn nằm ở vị trí cuối cùng (thứ 3) trên màn hình nhỏ (order-3),
+            nhưng ở màn hình lớn thì nằm ở vị trí đầu tiên (order-xl-1) và nằm bên trái
+            ==>>KẾT HỢP VỚI PHẦN TEXT TRÊN THÌ SẼ TÓM GỌN LÀ:
+                -MÀN HÌNH LỚN: GIF NẰM CÙNG CHIỀU NGANG VỚI TEXT, GIF BÊN TRÁI TEXT BÊN PHÁI
+                -MÀN HÌNH NHỎ: GIF KHÔNG NẰM CÙNG CHIỀU NGANG VỚI TEXT, GIF NẰM DƯỚI TEXT
+            -->
+            <div class="col-12 col-xl-7 order-3 order-xl-1 text-center">
+                <img class="blockToGap7_5 img-fluid" src="Imgs/Gifs/nguyetDienCamGif.gif">
+            </div>
+
+            <div class="col-12 order-4 mt-3">
+                <h6>FACT🤓☝️</h6>
+                <p class="chuToGap0_5">
+                    -Nguyệt Điện Cảm Phản ứng được tính bằng tổng nhiều nhân vật tham gia vào phản ứng( gây ấn thủy hoặc lôi)<br>
+                    -Khi sát thương Nguyệt Điện Cảm Phản ứng được gây ra mỗi nhân vật sẽ sử dụng Crit của bản thân
+                    để thực hiện random theo %crit. Và chốt lại giá trị để tham gia xếp hạng( tức giá trị
+                    tham gia xếp hạng thì chốt được là chí hay không rồi).<br>
+                    -Kèm theo việc có thể có nhiều nhân vật không tham gia vào phản ứng. Dẵn đến có 
+                    nhiều con số dame hiển thị trên màn hình vì có rất nhiều TH có thể xảy ra, 
+                    nhưng chung quy vẫn chỉ có 1 đến vài TH có tỷ lệ cao là xảy ra
+                    ( đó là TH của những nv có %crit cao)
+                </p>
+            </div>
+
+            <div class="col-12 order-5 mt-3">
+                <h6>HƯỚNG DẴN🤔🤔🤔</h6>
+                <p class="chuToGap0_5">
+                    -Nhập thông tin nhân vật, chọn Loại Bạo, nhập kháng quái<br>
+                    -Nếu đội không có Flins, nhập ATK Flins bằng 0<br>
+                    -Nếu nhân vật không tham gia phản ứng( không cấp thủy hoặc lôi) thì LV nhân vật bằng 0
+                    -Nhân vật số 3 và 4 là 1 char ngẫu nhiên<br>
+                    -C1 Ineffa( nếu có) thì cẩn thận khi nhập Bonus Nguyệt( vì mỗi 100 ATK mới được
+                    2.5% Bonus Nguyệt, không phải lúc nào cũng nhập 50% Bonus Nguyệt khi có C1).
+                </p>
+            </div>
+
+            <!-- Họa tiết Elden luôn nằm cố định ở dưới cùng -->
+            <div class="col-12 order-last text-center mt-2">
+                <img class="blockToGap0_8 img-fluid" src="Imgs/TenLogo/hoaTietElden1.png">
+            </div>
+
+        </div>
+
+
+
+
+        <div class="text-center" style="margin-top: 2rem; padding-bottom: 1rem">
+            <a id="nutKeoLen"><img class="blockToGap4" src="Imgs/Sticker/varesa-genshin-impact-chibi-doi.webp"></a>
+        </div>
+
+    </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="JavaScript/thanhMenuTrenCungCute.js"></script>
+    <script src="JavaScript/nguyetDienCam.js"></script>
+    <script src="JavaScript/hieuUngCuon45.js"></script>
+    <script src="JavaScript/tinhToanPhanUngNguyetDienCam.js"></script>
+</body>

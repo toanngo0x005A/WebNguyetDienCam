@@ -1,0 +1,11 @@
+.hieuUngCuon {
+    opacity: 0;
+    transform: translateY(50px); /*Dời phần tử xuống 50px so với vị trí ban đầu.*/
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.hieuUngCuon.thucHien {
+    opacity: 1;
+    transform: translateY(0); /*Khi phần tử có class .thucHien, nó hiện lên (opacity: 1) 
+    và di chuyển về vị trí ban đầu (translateY(0)).*/
+}

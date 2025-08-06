@@ -1,0 +1,203 @@
+.menuCute {
+    background: linear-gradient(to right, #ffb6c1, #ff69b4);
+    font-size: 18px;
+    box-shadow: 0 4px 6px rgba(255, 105, 180, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.container-menu {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a, .nav-links div {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links div:hover {
+    color: #fff0f5;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: white;
+    display: none;
+}
+
+
+
+
+@media (max-width: 768px) {
+    /* Khi màn hình nhỏ (≤768px), nút menu ba gạch (.menu-toggle) sẽ hiện ra, để 
+    người dùng bấm mở menu. */
+    .menu-toggle {
+        display: block; 
+    }
+
+    .nav-links { /* Đây là khu vực chứa các liên kết, thành phần trong menu khi ta bấm dấu 3 gạch*/
+        position: absolute; /* đặt menu nổi bên trên các phần khác. */
+        top: 60px; /* cách trên 60px để cách thanh menu ngang trên cùng */
+        left: 0;
+        right: 0;
+        background: linear-gradient(to right, #ffb6c1, #ff69b4);
+        flex-direction: column; /* các liên kết xếp dọc. */
+        align-items: flex-start; /* menu bị ẩn và thu nhỏ chiều cao khi ban đầu */
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transform: scaleY(0.95);
+        transition: all 0.3s ease;
+        padding: 0 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.show { /* Khi người dùng bấm nút menu( tức dấu 3 gạch), class .show được thêm. */
+        max-height: 500px;
+        opacity: 1;
+        /* hiện toàn bộ menu */
+
+        transform: scaleY(1); /* dùng để phóng to phần tử theo trục dọc (chiều cao). */
+        /* Trong .nav-links có
+            scaleY(0.95): tức ban đầu có chiều cao bằng 95%( so với ban đầu là 500px)
+        Nhưng khi ta bấm vào dấu 3 gạch( tức class .show được thêm vào) thì
+        ta có 
+            scaleY(1): tức chiều cao bằng 100% (so với ban đầu là 500px) trong .nav-links.show
+        => Tạo cảm giác phần tử được mở rộng ra mượt mà.
+
+        Và khi này nếu ta bấm vào dấu 3 gạch lần nữa thì class .show sẽ bị xóa đi.
+        Giúp chuyển từ scale(0.95) về scale(1) mượt mà( tạo hiệu ứng thu nhỏ mượt mà).
+        */
+
+        padding: 10px 20px;
+    }
+
+    .nav-links a, .nav-links div {
+        padding: 10px 0;
+        width: 100%;
+    }
+}
+
+
+
+.dropdown-baoKich {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown-baoKich .dropdown-label {
+    color: white;
+    font-size: 16px;
+}
+
+.dropdown-baoKich .dropdown-options {
+    display: none;
+    position: absolute;
+    background: linear-gradient(to right, #ffb6c1, #ff69b4);
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    padding: 10px;
+    top: 30px;
+    left: 0;
+    z-index: 999;
+}
+
+.dropdown-baoKich .dropdown-options label {
+    display: block;
+    color: white;
+    padding: 5px 0;
+}
+
+.dropdown-baoKich:hover .dropdown-options {
+    display: block;
+}
+
+.dropdown-options input[type="radio"]:checked + span {
+    font-weight: bold;
+    color: #fff0f5;
+}
+
+/* Responsive chỉnh cho dropdown trong mobile */
+@media (max-width: 768px) {
+    .dropdown-baoKich {
+        width: 100%;
+    }
+
+    .dropdown-baoKich .dropdown-options {
+        position: static;
+        box-shadow: none;
+        padding-left: 0;
+    }
+
+    .dropdown-baoKich:hover .dropdown-options {
+        display: block;
+    }
+}
+
+
+
+
+.bao-kich-slider {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 300px;
+        margin: 20px auto;
+        background: #ffb6c1;
+        border-radius: 30px;
+        padding: 5px;
+        position: relative;
+        font-family: sans-serif;
+        user-select: none;
+    }
+
+    .bao-kich-option {
+        flex: 1;
+        text-align: center;
+        padding: 10px 0;
+        cursor: pointer;
+        z-index: 2;
+        color: white;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    .bao-kich-slider .highlight {
+        position: absolute;
+        top: 5px;
+        bottom: 5px;
+        width: calc(100% / 3 - 10px);
+        background: #ff69b4;
+        border-radius: 25px;
+        z-index: 1;
+        transition: left 0.3s ease;
+    }
+
+    .bao-kich-option.selected {
+        color: #fff;
+    }
+

@@ -1,0 +1,218 @@
+body{
+    /* font-family: 'Comic Sans MS', cursive, sans-serif; 
+    Chỉ hiển thị tốt ở pc và máy tính bảng thôi, chứ điện thoại thông thường
+    sẽ hiển thị bị lỗi ở các ký tự có dấu tiếng việt.
+    */ 
+    font-family: 'Oswald', sans-serif;
+
+    color: white;
+    background-color: #F7C4C9; /* Màu hồng nhẹ nhàng */
+}
+
+
+
+#nutKeoLen img,
+.playNhac4ChuLam {
+	display: inline-block;
+	cursor: pointer;
+	transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+/* Hover: tăng bão hòa */
+#nutKeoLen img:hover,
+.playNhac4ChuLam:hover {
+	filter: saturate(260%);
+}
+
+/* Click (active) */
+#nutKeoLen img:active, 
+.playNhac4ChuLam:active {
+	transform: scale(0.8); /* Thu nhỏ thêm khi ấn */
+}
+
+
+
+.khungNhapChiSo p{
+    text-shadow: 6px 6px 18px rgba(0, 0, 0, 0.6);
+}
+
+#XepHangNguyetDienCamPUCN h5, #XepHangNguyetDienCamPUCN h4
+#TongKetNguyetDienCam h4, #TongKetNguyetDienCam h3 {
+    font-weight: bold; /* Tăng độ đậm */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); /* Bóng chữ */
+}
+
+#XepHangNguyetDienCamPUCN h6{
+    font-style: italic;
+}
+
+
+
+
+
+
+
+/*Phần nền dưới*/
+#NenPhiaDuoi {
+    position: fixed; /*Đặt ở vị trí cố định trên màn hình, ngay cả khi cuộn trang.*/
+
+    top: 0;
+    left: 0;
+    /*Đảm bảo được gắn ở góc trên cùng bên trái của cửa sổ trình duyệt*/
+
+    width: 100%;/*Chiếm toàn bộ chiều rộng màn hình (viewport).*/
+
+    z-index: 1; /*Đặt z-index thấp hơn phần tử .NenPhiaTren để đảm bảo nền nằm dưới 
+    các phần tử khác (như phần nội dung chính và hình nền).*/ 
+
+    overflow: hidden;/*Ngăn không cho vượt ra ngoài vùng chứa (có thể xảy ra nếu 
+    có tỷ lệ khung hình không tương thích với màn hình).*/
+}
+
+#NenPhiaDuoi img {
+    width: 100%;
+    height: 100%;
+    /*Kéo dài để lấp đầy toàn bộ phần tử chứa.*/
+
+    object-fit: cover; /* Đảm bảo phủ kín toàn bộ diện tích phần tử mà không bị bóp méo. 
+    Nếu tỷ lệ khung hình không hoàn hảo với tỷ lệ khung hình của phần tử chứa, có thể bị cắt 
+    bớt để đảm bảo che phủ đầy đủ.*/
+}
+
+
+
+/* Phần nền phía trên*/
+.NenPhiaTren {
+    position: relative; /*Đặt phần tử này ở vị trí tương đối để các phần tử con có thể được căn chỉnh dễ dàng.
+    Và quan trọng hơn, khi dùng thuộc tính "z-index": Giá trị của thuộc tính "position" của thẻ 
+    được gán "z-index" phải khác static
+    Vì thuộc tính z-index chỉ hoạt động trên các phần tử có giá trị thuộc tính "position" là relative, 
+    absolute, fixed, hoặc sticky.
+    Thuộc tính "z-index" sẽ vô dụng, không hoạt động không nếu phần tử được gán có giá trị "position" 
+    là static.*/
+    z-index: 2; /*Đặt phần nền này lên trên Nền phía dưới bằng cách sử dụng giá trị z-index cao hơn 
+    (z-index 2 so với Nền phía dưới có z-index 1).*/
+
+    background-image: url('../Imgs/HinhNen/nenDienThoaiVaresa-PhuDen.jpg');
+
+    background-position: center center; /* Canh giữa hình nền theo chiều ngang và dọc
+    ( đây là thứ ở dạng hình nhỏ( tức màn < 576 ta cần) để canh giữa hình khiến nó đẹp hơn*/
+    /* Nhưng ở thuộc tính 'background-position' không dùng 'center center' ở dạng hình lớn
+    ( tức màn >= 576).
+    Mà phải dùng 'center left' vì ta cần hình bị kéo về phía bên trái( tức vị trí nhân vật 
+    Varesa đứng) khi màn càng ngày càng nhỏ( thử kéo nhỏ tab trình duyệt ở laptop là biết)
+    Thế nên ở trong các TH màn hình lớn dưới ta bắt buộc phải dùng
+        background-position: center left !important;
+    Để ghi đè lên background-position: center center; ở trên.
+
+    &&Có thể bạn chưa bít: Mặc định của thuộc tính 'background-position' là '0% 0%'
+    Tức 'top left'
+    */
+
+    background-size: cover; /*Đảm bảo hình nền sẽ phủ toàn bộ diện tích của phần tử, có thể 
+    cắt bớt nếu tỷ lệ khung hình không tương ứng.*/
+
+    background-attachment: fixed;  /* Giữ hình nền cố định khi cuộn */
+
+    background-repeat: no-repeat;       /* Không lặp */
+
+}
+
+
+
+
+.nenTrenCung {
+    margin-top: 30vh !important;  /* giữ nguyên vì không yêu cầu chỉnh */
+}
+
+
+/* Điện thoại lớn (≥ 576px) */
+@media (min-width: 576px) {
+    .NenPhiaTren {
+        background-image: url('../Imgs/HinhNen/nenPCVaresa_waifu2x_2x_2n-PhuDen-LatNguoc.png') !important;
+        background-position: center left !important;
+    }
+
+    .nenTrenCung {
+        margin-top: 45vh !important;
+    }
+}
+
+/* Máy tính bảng dọc (≥ 768px) */
+@media (min-width: 768px) {
+    .NenPhiaTren {
+        background-image: url('../Imgs/HinhNen/nenPCVaresa_waifu2x_2x_2n-PhuDen-LatNguoc.png') !important;
+        background-position: center left !important;
+    }
+
+    .nenTrenCung {
+        margin-top: 55vh !important;
+    }
+}
+
+/* Máy tính bảng ngang hoặc nhỏ hơn laptop (≥ 992px) */
+@media (min-width: 992px) {
+    .NenPhiaTren {
+        background-image: url('../Imgs/HinhNen/nenPCVaresa_waifu2x_2x_2n-PhuDen-LatNguoc.png') !important;
+        background-position: center left !important;
+    }
+
+    .nenTrenCung {
+        margin-top: 65vh !important;
+    }
+}
+
+/* Laptop tiêu chuẩn (≥ 1200px) */
+@media (min-width: 1200px) {
+    .NenPhiaTren {
+        background-image: url('../Imgs/HinhNen/nenPCVaresa_waifu2x_2x_2n-PhuDen-LatNguoc.png') !important;
+        background-position: center left !important;
+    }
+
+    .nenTrenCung {
+        margin-top: 77vh !important;
+    }
+}
+
+/* Laptop màn lớn và Màn hình lớn (≥ 1400px), laptop tôi thuộc khoảng này */
+@media (min-width: 1400px) {
+    .NenPhiaTren {
+        background-image: url('../Imgs/HinhNen/nenPCVaresa_waifu2x_2x_2n-PhuDen-LatNguoc.png') !important;
+        background-position: center left !important;
+    }
+
+    .nenTrenCung {
+        margin-top: 80vh !important;
+    }
+}
+
+/* Màn hình rất lớn / TV / Desktop siêu rộng (≥ 1600px) */
+@media (min-width: 1600px) {
+    .NenPhiaTren {
+        background-image: url('../Imgs/HinhNen/nenPCVaresa_waifu2x_2x_2n-PhuDen-LatNguoc.png') !important;
+        background-position: center left !important;
+    }
+
+    .nenTrenCung {
+        margin-top: 88vh !important;
+    }
+}
+
+
+
+
+.NenPhiaTrenTrongSuotGiua{
+    position: relative; /*Đặt phần tử này ở vị trí tương đối để các phần tử con có thể được căn chỉnh dễ dàng.
+    Và quan trọng hơn, khi dùng thuộc tính "z-index": Giá trị của thuộc tính "position" của thẻ 
+    được gán "z-index" phải khác static
+    Vì thuộc tính z-index chỉ hoạt động trên các phần tử có giá trị thuộc tính "position" là relative, 
+    absolute, fixed, hoặc sticky.
+    Thuộc tính "z-index" sẽ vô dụng, không hoạt động không nếu phần tử được gán có giá trị "position" 
+    là static.*/
+    z-index: 2; /*Đặt phần nền này lên trên Nền phía dưới bằng cách sử dụng giá trị z-index cao hơn 
+    (z-index 2 so với Nền phía dưới có z-index 1).*/
+
+    display: flex;
+    justify-content: center; /* Căn giữa ngang */
+    align-items: center; /* Căn giữa dọc */
+}
